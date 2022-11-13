@@ -8,5 +8,10 @@
 </head>
 <body>
     Login;
+    <form action="<?= base_url; ?>/login/prosesLogin" method="post">
+        <input type="text" name="username">username</input>
+        <input type="password" name="password">password</input>
+        <button type="submit">login</button>
+    </form>
 </body>
 </html>

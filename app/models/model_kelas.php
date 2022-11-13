@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     protected $table = "tb_kelas";
+    public $timestamps = false;
+    protected $fillable = [
+        "nama_kelas",
+    ];
 }

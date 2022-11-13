@@ -14,7 +14,7 @@ $database->addConnection([
     'password' => '',
     'database' => 'new_presensi',
     'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
+    'collation' => 'utf8_unicode_ci',   
 ]);
 
 

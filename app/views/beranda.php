@@ -10,6 +10,7 @@
 
 <body>
     Home;
+    <?php echo $_SESSION['username']; ?>
     <table>
         <tr>
             <th>Hadir</th>
@@ -27,7 +28,7 @@
     </tr>
     </table>
     <a href="<?= base_url; ?>/kelas"><button type="submit">KELAS</button></a>
-    <a href="<?= base_url; ?>/login"><button type="submit">LOGIN</button></a>
+    <a href="<?= base_url; ?>/login/logout"><button type="submit">LOG OUT</button></a>
 </body>
 
 </html>
