@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Lutfi Sobri
+ * @link https://kateruriyu.my.id
+ * 
+ */
 class App
 {
 	protected $controller = 'homeController';

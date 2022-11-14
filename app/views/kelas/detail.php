@@ -8,7 +8,8 @@
 </head>
 <body>
     <?php
-        echo json_encode($data['kelas']);
+    echo ($data['kelas']);
+        // echo $data['kelas'] != null ? json_encode($data['kelas']) : "";
     ?>
 </body>
 </html>
