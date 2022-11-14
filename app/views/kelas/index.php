@@ -37,8 +37,8 @@
         <thead>
             <tr>
                 <!-- <th style="width: 10px">#</th> -->
-                <th>id</th>
-                <th>nama</th>
+                <th>No</th>
+                <th>Nama</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -48,9 +48,8 @@
                 <tr>
                     <td><?= $no; ?></td>
                     <td><?= $row['nama_kelas']; ?></td>
-                    <td style="margin-right: 2;">
+                    <td style="margin-left: 2;">
                     <a href="<?= base_url; ?>/kelas/detail/<?= $row['id_kelas'] ?>" class="badge badge-info">lihat</a>
-                    <a href="<?= base_url; ?>/kelas/tambah" class="badge badge-info">tambah</a>
                     <a href="<?= base_url; ?>/kelas/edit/<?= $row['id_kelas'] ?>" class="badge badge-info">Edit</a>
                     <a href="<?= base_url; ?>/kelas/hapus/<?= $row['id_kelas'] ?>" class="badge badge-danger" onclick="return confirm('Hapus data?');">Hapus</a>
                     </td>
@@ -59,6 +58,7 @@
             endforeach; ?>
         </tbody>
     </table>
+    <a href="<?= base_url; ?>/kelas/tambah" class="badge badge-info">Tambah Kelas</a>
 </body>
 
 </html>

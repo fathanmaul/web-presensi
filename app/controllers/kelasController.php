@@ -10,7 +10,7 @@ class kelasController extends Controller
 	public function __construct()
 	{
 		if ($_SESSION['session_login'] != 'sudah_login') {
-			header('location: ' . base_url . '/login');
+			header('location: ' . base_url . '/auth/login');
 			exit;
 		}
 	}
@@ -55,6 +55,31 @@ class kelasController extends Controller
 		} else {
 			header('Location: ' . base_url . '/kelas/index');
 			die;
+		}
+	}
+
+	public function tambah() {
+		$data['title'] = "kelas";
+		$data['subtitle'] = "tambah kelas";
+		$this->view('kelas/tambah', $data);
+	}
+
+	public function simpan() {
+		if ($_POST > 1) {
+			try {
+				kelas::insert([
+					'nama_kelas' => $_POST['nama_kelas'],
+				]);
+				header('Location: ' . base_url . '/kelas/index');
+			} catch(\Illuminate\Database\QueryException $e){
+				$errorCode = $e->errorInfo[1];
+				if($errorCode == '1062'){
+					header('Location: ' . base_url . '/kelas/tambah');
+					Message::setFlash(['Kelas sudah ada'],'', 'danger');
+				}
+			}
+		} else {
+			header('Location: ' . base_url . '/kelas/index');
 		}
 	}
 
@@ -117,4 +142,5 @@ class kelasController extends Controller
 			return $url;
 		}
 	}
+
 }
