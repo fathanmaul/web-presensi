@@ -173,11 +173,13 @@ class ComposerStaticInitcc1fa1b191727ab779ce968353425630
     );
 
     public static $classMap = array (
+        'App\\Models\\DetailPresensi' => __DIR__ . '/../..' . '/app/models/model_detail_presensi.php',
+        'App\\Models\\DetailSiswa' => __DIR__ . '/../..' . '/app/models/model_detail_siswa.php',
+        'App\\Models\\Guru' => __DIR__ . '/../..' . '/app/models/model_guru.php',
         'App\\Models\\Kelas' => __DIR__ . '/../..' . '/app/models/model_kelas.php',
-        'App\\Models\\detailPresensi' => __DIR__ . '/../..' . '/app/models/model_detail_presensi.php',
-        'App\\Models\\guru' => __DIR__ . '/../..' . '/app/models/model_guru.php',
-        'App\\Models\\presensi' => __DIR__ . '/../..' . '/app/models/model_presensi.php',
-        'App\\Models\\user' => __DIR__ . '/../..' . '/app/models/model_user.php',
+        'App\\Models\\Presensi' => __DIR__ . '/../..' . '/app/models/model_presensi.php',
+        'App\\Models\\Siswa' => __DIR__ . '/../..' . '/app/models/model_siswa.php',
+        'App\\Models\\User' => __DIR__ . '/../..' . '/app/models/model_user.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',

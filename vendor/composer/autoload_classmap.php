@@ -6,11 +6,13 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Models\\DetailPresensi' => $baseDir . '/app/models/model_detail_presensi.php',
+    'App\\Models\\DetailSiswa' => $baseDir . '/app/models/model_detail_siswa.php',
+    'App\\Models\\Guru' => $baseDir . '/app/models/model_guru.php',
     'App\\Models\\Kelas' => $baseDir . '/app/models/model_kelas.php',
-    'App\\Models\\detailPresensi' => $baseDir . '/app/models/model_detail_presensi.php',
-    'App\\Models\\guru' => $baseDir . '/app/models/model_guru.php',
-    'App\\Models\\presensi' => $baseDir . '/app/models/model_presensi.php',
-    'App\\Models\\user' => $baseDir . '/app/models/model_user.php',
+    'App\\Models\\Presensi' => $baseDir . '/app/models/model_presensi.php',
+    'App\\Models\\Siswa' => $baseDir . '/app/models/model_siswa.php',
+    'App\\Models\\User' => $baseDir . '/app/models/model_user.php',
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Normalizer' => $vendorDir . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',

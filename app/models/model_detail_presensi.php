@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * model detail_presensi
  * 
  */
-class detailPresensi extends Model
+class DetailPresensi extends Model
 {
     protected $table = "tb_detail_presensi";
 }

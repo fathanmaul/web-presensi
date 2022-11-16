@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * model user
  */
-class user extends Model
+class User extends Model
 {
     protected $table = "tb_user";
     public $timestamps = false;

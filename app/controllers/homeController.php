@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\detailPresensi;
-use App\Models\presensi;
+use App\Models\DetailPresensi;
+use App\Models\Presensi;
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
@@ -25,9 +25,9 @@ class homeController extends Controller {
 	public function index()
 	{
 		$data['title'] = 'Home';
-		$hadir = count(detailPresensi::where('status_kehadiran','=','hadir')->get());
-		$izin = count(detailPresensi::where('status_kehadiran', '=', 'izin')->get());
-		$sakit = count(detailPresensi::where('status_kehadiran', '=', 'sakit')->get());
+		$hadir = count(DetailPresensi::where('status_kehadiran','=','hadir')->get());
+		$izin = count(DetailPresensi::where('status_kehadiran', '=', 'izin')->get());
+		$sakit = count(DetailPresensi::where('status_kehadiran', '=', 'sakit')->get());
         $data['presensi'] = array($hadir, $izin, $sakit);
         $this->view('beranda', $data);
 	}
