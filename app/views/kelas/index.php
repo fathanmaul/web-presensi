@@ -9,36 +9,12 @@
 </head>
 
 <body>
-    <?php
-    // echo "<br>"; 
-    // for ($i = 0; $i < count($data['kelas']); $i++) {
-    //     # code...
-    //     echo json_encode($data['kelas'][$i]);
-    //     echo "<br>";
-    // }
-    // foreach ($data['jumlah_siswa'] as $isi) {
-
-    // }
-    // $i = 0;
-    // while ($i > count($data) + 4) {
-    //     $i ++;
-    //     echo $i;
-    //     if ($i == count($data)) break;
-    // }
-    // echo $data['jumlah_siswa'][$i][$i];
-    // echo $i;
-    // echo count($data['jumlah_siswa']);
-    // echo "<br>";
-    // echo $i;
-    // echo "<br>";
-
-    ?>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <!-- <th style="width: 10px">#</th> -->
                 <th>No</th>
-                <th>Nama</th>
+                <th>Nama Kelas</th>
+                <th>Jumlah Siswa</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -46,12 +22,29 @@
             <?php $no = 1; ?>
             <?php foreach ($data['kelas'] as $row) : ?>
                 <tr>
-                    <td><?= $no; ?></td>
+                    <td><?= $no ?></td>
                     <td><?= $row['nama_kelas']; ?></td>
+                    <td><?php
+                        foreach ($data['jumlah_siswa'] as $isi) {
+                            for ($i = 0; $i < count($data['jumlah_siswa']); $i++) {
+                                if ($row->id_kelas === $isi[0]->id_kelas) {
+                                    if (count($isi) > 0) {
+                                        echo count($isi);
+                                    } else if (count($isi) === 0) {
+                                        echo 0;
+                                        echo $isi[0]->id_kelas;
+                                    } else if (count($isi) === null) {
+                                        echo 0;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        ?></td>
                     <td style="margin-left: 2;">
-                    <a href="<?= base_url; ?>/kelas/detail/<?= $row['id_kelas'] ?>" class="badge badge-info">lihat</a>
-                    <a href="<?= base_url; ?>/kelas/edit/<?= $row['id_kelas'] ?>" class="badge badge-info">Edit</a>
-                    <a href="<?= base_url; ?>/kelas/hapus/<?= $row['id_kelas'] ?>" class="badge badge-danger" onclick="return confirm('Hapus data?');">Hapus</a>
+                        <a href="<?= base_url; ?>/kelas/detail/<?= $row['id_kelas'] ?>" class="badge badge-info">lihat</a>
+                        <a href="<?= base_url; ?>/kelas/edit/<?= $row['id_kelas'] ?>" class="badge badge-info">Edit</a>
+                        <a href="<?= base_url; ?>/kelas/hapus/<?= $row['id_kelas'] ?>" class="badge badge-danger" onclick="return confirm('Hapus data?');">Hapus</a>
                     </td>
                 </tr>
             <?php $no++;
