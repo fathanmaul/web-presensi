@@ -37,6 +37,15 @@ class App
 			}
 		}
 
+		if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
+			session_unset();
+			session_destroy();
+			echo "<script>alert('Session anda telah habis, silahkan login kembali!'); window.location.href = '" . base_url . "/auth/login';</script>";
+			exit;
+		}
+		
+		$_SESSION['LAST_ACTIVITY'] = time();
+
 		if (!empty($url)) {
 			$this->params = array_values($url);
 		}
