@@ -6,10 +6,6 @@ use Rakit\Validation\Validator as validator;
 
 class authController extends Controller
 {
-	/**
-	 * method yang mengarahkan ke halaman login
-	 *
-	 */
 	public function login()
 	{
 		$data['title'] = 'Login';
@@ -22,28 +18,6 @@ class authController extends Controller
 		$this->view('/auth/register', $data);
 	}
 
-	/**
-	 * method yang memproses login
-	 * proses login ini menggunakan session
-	 * 
-	 * 
-	 * session ini akan di cek di setiap halaman yang membutuhkan login
-	 * 
-	 * 
-	 * apabila session tidak ada maka akan di redirect ke halaman login
-	 * berikut contoh session yang di cek di kelasController.php
-	 * 
-	 * 
-	 * 
-	 * if ($_SESSION['session_login'] != 'sudah_login') 
-	 
-	 * {
-	 * 
-	 * 		header('location: ' . base_url . '/login');
-	 * 		exit;
-	 * }
-	 *
-	 */
 	public function authLogin()
 	{
 		$validator = new validator;
@@ -77,6 +51,9 @@ class authController extends Controller
 				$_SESSION['session_username'] = $cek['username'];
 				$_SESSION['session_level'] = $cek['id_level'];
 				$_SESSION['session_id'] = $cek['id_user'];
+				$_SESSION['login_time'] = time();
+				$_SESSION['LAST_ACTIVITY'] = time();
+				// $_SESSION['session_expired'] = $_SESSION['login_time'] + (60 * 60);
 				header('location: ' . base_url . '/home');
 				exit;
 			}
@@ -92,10 +69,6 @@ class authController extends Controller
 		}
 	}
 
-	/**
-	 * method yang memproses logout
-	 *
-	 */
 	public function logout()
 	{
 		session_start();
@@ -110,7 +83,6 @@ class authController extends Controller
 		$validation = $validator->make($_POST, [
 			'username' => 'required',
 			'password' => 'required',
-			// 'level' => 'required'
 		]);
 
 		$validation->setMessages([
@@ -152,83 +124,4 @@ class authController extends Controller
 		header('location: ' . base_url . '/auth/login');
 		exit;
 	}
-
-
-	// public function prosesLogin()
-	// {
-	// 	$this->validasi();
-	// 	$data['title'] = "login";
-	// 	$row = $this->checkLogin($_POST);
-
-	// 	if (!$row == []) {
-	// 		session_start();
-	// 		$_SESSION['username'] = $row['username'];
-	// 		$_SESSION['password'] = $row['password'];
-	// 		$_SESSION['id'] = $row['id_user'];
-	// 		$_SESSION['level'] = $row['id_level'];
-	// 		$_SESSION['session_login'] = 'sudah_login';
-	// 		header('location: ' . base_url . '/home');
-	// 	} else {
-	// 		// $this->view('/login/login', $data);
-	// 		header('Location: '.base_url.'/login');
-	// 		exit;
-	// 	}
-			
-	// 		// session_start();
-	// 		// $_SESSION['username'] = $row['username'];
-	// 		// $_SESSION['password'] = $row['password'];
-	// 		// $_SESSION['id'] = $row['id_user'];
-	// 		// $_SESSION['level'] = $row['id_level'];
-	// 		// $_SESSION['session_login'] = 'sudah_login';
-	// 		// header('location: ' . base_url . '/home');
-	// 	// } else {
-	// 		// header('location: ' . base_url . '/login');
-	// 		// exit;
-	// 	// }
-
-	// 	// header('location: ' . base_url . '/login');
-	// 	// exit;
-	// }
-
-	// public function checkLogin($data)
-	// {
-	// 	if (isset($data['username']) && isset($data['password'])) {
-	// 		$users = user::where('username', $data['username'])
-	// 			->where('password', $data['password'])
-	// 			->first();
-	// 		return $users;
-	// 	}
-	// }
-
-	// protected function validasi()
-	// {
-	// 	$validator = new Validator;
-
-	// 	$validation = $validator->make([
-	// 		'username' => $_POST['username'],
-	// 		'password' => $_POST['password']
-	// 	], [
-	// 		'username' => 'required',
-	// 		'password' => 'required'
-	// 	]);
-	// 	$validation->validate();
-
-	// 	if ($validation->fails()) {
-	// 		$errors = $validation->errors()->firstOfAll();
-	// 		if ($errors['username'] != "") {
-	// 			Message::setFlash(['Password'], 'wajib di isi', 'danger');
-	// 			header('Location : '.base_url.'/login');
-	// 			exit;
-	// 		}
-	// 		echo "<br>";
-	// 		if ($errors['password'] != "") {
-	// 			Message::setFlash(['Password'], 'wajib di isi', 'danger');
-	// 			header('Location : '.base_url.'/login');
-	// 			exit;
-	// 		}
-	// 		$data['title'] = 'Login';
-	// 		$this->view('/login/login', $data);
-	// 		exit;
-	// 	}
-	// }
 }
