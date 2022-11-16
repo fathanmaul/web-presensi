@@ -18,7 +18,7 @@ class Controller{
 	 * 
 	 * $data['title'] = 'Home';
 	 * 
-	 * $data['presensi'] = 'ini isi';
+	 * $data['kelas'] = 'daftar kelas dan siswa';
 	 * 
 	 * maka di kode html dapat di panggil dengan
 	 * 

@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
-use App\Models\user;
+use App\Models\User;
 use Rakit\Validation\Validator as validator;
 
 class authController extends Controller
@@ -43,7 +43,7 @@ class authController extends Controller
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		$cek = user::where('username', '=', $username)->first();
+		$cek = User::where('username', '=', $username)->first();
 		session_start();
 		if ($cek != null) {
 			if ($password == $cek['password']) {
@@ -104,7 +104,7 @@ class authController extends Controller
 		// $level = $_POST['id_level'];
 		$level = 1;
 
-		$cek = user
+		$cek = User
 			::where('username', '=', $username)
 			->first();
 
@@ -114,7 +114,7 @@ class authController extends Controller
 			exit;
 		}
 		
-		$register = new user;
+		$register = new User;
 		$register->username = $username;
 		$register->password = password_hash($password, PASSWORD_DEFAULT);
 		$register->id_level = $level;

@@ -49,8 +49,9 @@ class kelasController extends Controller
 			->join('tb_detail_siswa', 'tb_siswa.nis', '=', 'tb_detail_siswa.nis')
 			->where('tb_kelas.id_kelas', '=', $url[2])
 			->get();
+		$data['id_kelas'] = $url[2];
 
-		if ($data != null) {
+		if ($data['kelas'] != null) {
 			$this->view('kelas/detail', $data);
 		} else {
 			header('Location: ' . base_url . '/kelas/index');
@@ -58,24 +59,26 @@ class kelasController extends Controller
 		}
 	}
 
-	public function tambah() {
+	public function tambah()
+	{
 		$data['title'] = "kelas";
 		$data['subtitle'] = "tambah kelas";
 		$this->view('kelas/tambah', $data);
 	}
 
-	public function simpan() {
-		if ($_POST > 1) {
+	public function simpan()
+	{
+		if (isset($_POST['submit'])) {
 			try {
 				kelas::insert([
 					'nama_kelas' => $_POST['nama_kelas'],
 				]);
 				header('Location: ' . base_url . '/kelas/index');
-			} catch(\Illuminate\Database\QueryException $e){
+			} catch (\Illuminate\Database\QueryException $e) {
 				$errorCode = $e->errorInfo[1];
-				if($errorCode == '1062'){
+				if ($errorCode == '1062') {
 					header('Location: ' . base_url . '/kelas/tambah');
-					Message::setFlash(['Kelas sudah ada'],'', 'danger');
+					Message::setFlash(['Kelas sudah ada'], '', 'danger');
 				}
 			}
 		} else {
@@ -125,12 +128,11 @@ class kelasController extends Controller
 		$hapus = Kelas::where('id_kelas', $url[2])->delete();
 
 		if ($hapus) {
-			$data['delete_kelas'.$url[2]] = "sukses";
+			$data['delete_kelas' . $url[2]] = "sukses";
 			header('Location: ' . base_url . '/kelas/index');
 		} else {
 			header('Location: ' . base_url . '/kelas/index');
 		}
-
 	}
 
 	public function parseURL()
@@ -142,5 +144,4 @@ class kelasController extends Controller
 			return $url;
 		}
 	}
-
 }
