@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * model presensi
  */
-class presensi extends Model
+class Presensi extends Model
 {
     protected $table = "tb_presensi";
 }

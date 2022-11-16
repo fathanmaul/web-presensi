@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * model guru
  */
-class guru extends Model
+class Guru extends Model
 {
     protected $table = "tb_guru";
     public $timestamps = false;
