@@ -35,7 +35,7 @@ class authController extends Controller
 		if ($validation->fails()) {
 			$errors = $validation->errors();
 			$pesan = $errors->firstOfAll();
-			Message::setFlash($pesan, 'login', 'danger');
+			Message::setFlash($pesan, '', 'danger');
 			header('location: ' . base_url . '/auth/login');
 			exit;
 		}
@@ -44,26 +44,26 @@ class authController extends Controller
 		$password = $_POST['password'];
 
 		$cek = User::where('username', '=', $username)->first();
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
 		if ($cek != null) {
-			if ($password == $cek['password']) {
+			if ($password == password_verify($password, $cek->password)) {
 				$_SESSION['session_login'] = 'sudah_login';
 				$_SESSION['session_username'] = $cek['username'];
 				$_SESSION['session_level'] = $cek['id_level'];
 				$_SESSION['session_id'] = $cek['id_user'];
 				$_SESSION['login_time'] = time();
 				$_SESSION['LAST_ACTIVITY'] = time();
-				// $_SESSION['session_expired'] = $_SESSION['login_time'] + (60 * 60);
 				header('location: ' . base_url . '/home');
 				exit;
-			}
-			else {
-				Message::setFlash(['Password salah'], 'login', 'danger');
+			} else {
+				Message::setFlash(['Password'], 'salah', 'danger');
 				header('location: ' . base_url . '/auth/login');
 				exit;
 			}
 		} else {
-			Message::setFlash(['Username tidak ditemukan'], 'salah.', 'danger');
+			Message::setFlash(['Username'], 'tidak ditemukan.', 'danger');
 			header('location: ' . base_url . '/auth/login');
 			exit;
 		}
@@ -71,7 +71,9 @@ class authController extends Controller
 
 	public function logout()
 	{
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
 		session_destroy();
 		header('location: ' . base_url);
 		exit;
@@ -113,7 +115,7 @@ class authController extends Controller
 			header('location: ' . base_url . '/auth/register');
 			exit;
 		}
-		
+
 		$register = new User;
 		$register->username = $username;
 		$register->password = password_hash($password, PASSWORD_DEFAULT);
