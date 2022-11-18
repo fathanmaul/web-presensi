@@ -87,7 +87,6 @@ class siswaController extends Controller
                 header('location: ' . base_url . '/siswa');
                 exit;
             } catch (\Throwable $th) {
-                echo $th->getMessage();
                 Message::setFlash(['gagal'], 'ditambahkan', 'danger');
                 header('location: ' . base_url . '/siswa/tambah');
                 exit;
@@ -154,6 +153,32 @@ class siswaController extends Controller
         }
     }
 
+    public function delete() {
+        if (!isset($_POST['submit'])) {
+            require_once 'app/views/errors/404.php';
+            exit;
+        }
+
+        if (!$this->parseURL()[2]) {
+            return false;
+            exit;
+        }
+
+        $nis = $this->parseURL()[2];
+        try {
+            Siswa::where('nis', '=', $nis)->delete();
+            DetailSiswa::where('nis', '=', $nis)->delete();
+            Message::setFlash(['data berhasil'], ' dihapus', 'success');
+            return true;
+            exit;
+        } catch (\Throwable $th) {
+            Message::setFlash(['data gagal'], ' dihapus', 'danger');
+            return false;
+            exit;
+        }
+
+    }
+
     /**
      * @return bool
      *
@@ -172,7 +197,7 @@ class siswaController extends Controller
         $validation->setMessages([
             'required' => ':attribute wajib diisi',
             'numeric' => ':attribute harus berupa angka',
-        ]);
+        ]); 
         $validation->validate();
         if ($validation->fails()) {
             $errors = $validation->errors();
@@ -181,16 +206,6 @@ class siswaController extends Controller
             return false;
         } else {
             return true;
-        }
-    }
-
-    public function parseURL()
-    {
-        if (isset($_GET['url'])) {
-            $url = rtrim($_GET['url'], '/');
-            $url = filter_var($url, FILTER_SANITIZE_URL);
-            $url = explode('/', $url);
-            return $url;
         }
     }
 }
