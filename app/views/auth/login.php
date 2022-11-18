@@ -1,22 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $data['title']; ?></title>
+    <title>Admin | Login</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
+
 <body>
-    Login;
-    <form action="<?= base_url; ?>/auth/authLogin" method="post">
-        <input type="text" name="username">username</input>
-        <input type="password" name="password">password</input>
-        <button type="submit">login</button>
-    </form>
-    
-    <a href="<?= base_url; ?>/auth/register"><button type="submit">register</button></a>
+    <img class="wave" src="assets/img/wave_left 1.png">
+    <div class="q-container">
+        <div class="m-img">
+            <img src="assets/img/logo-nama.png">
+        </div>
+        <div class="m-login-content">
+            <form action="index.html">
+                <h2 class="m-title">Selamat Datang!</h2>
+                <h6 class="m-subtitle">Silahkan Isi Username dan Password dengan benar</h6>
+                <div class="m-input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="m-div">
+                        <input type="text" class="input" placeholder="Username" required name="username">
+                    </div>
+                </div>
+                <div class="m-input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="m-div">
+                        <input type="password" class="input input-pass" placeholder="Password" name="password">
+                    </div>
+                </div>
+                <input type="submit" class="m-btn" value="Login" name="submit">
+                <!-- <div class="alert alert-danger" role="alert">
+                    A simple danger alert check it out!
+                  </div> -->
+            </form>
 
-    <?php Message::flash(); ?>
-
+        </div>
+    </div>
+    <!-- <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/script.js"></script> -->
 </body>
+
 </html>
